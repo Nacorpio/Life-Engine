@@ -12,5 +12,5 @@ You are gonna be able to teach the brain things and the brain is gonna recognize
 
 The human can have different religions and the brain of the human have cells.
 If there are no cells in the brain, the person simply dies. If the person 
-doesn't have lost a lot of brain cells, the person might remain retarded.
+doesn't have a lot of brain cells, the person might remain retarded.
 The point of the brain that it is gonna be realistic.
