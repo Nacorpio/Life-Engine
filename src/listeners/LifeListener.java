@@ -1,16 +1,36 @@
 package listeners;
+import java.util.ArrayList;
+
+import diseases.Disease;
 import body.*;
 
 public class LifeListener {
 
 	private ILifeListener thelistener;
 	
+	private ArrayList<IAction> actions = new ArrayList<IAction>();
 	private int secondsTicked = 0;
 	private boolean isStarted = false;
 	private Human human = null;
 	
 	public LifeListener(Human h){
 		this.human = h;
+	}
+	
+	/**
+	 * Add an action to the queue.
+	 * @param action The action to add.
+	 */
+	public final void addAction(IAction action){
+		this.actions.add(action);
+	}
+	
+	/**
+	 * Returns all the actions within the queue.
+	 * @return Returns all the action within the queue.
+	 */
+	public final ArrayList<IAction> getActions(){
+		return this.actions;
 	}
 	
 	/**
@@ -54,6 +74,9 @@ public class LifeListener {
 	public void mission(Human human) {
 		for (Disease d: human.getLife().getDiseases()){
 			d.doEffects(human);
+		}
+		for (IAction action: this.actions){
+			action.action();
 		}
 	}
 	

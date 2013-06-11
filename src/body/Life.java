@@ -2,6 +2,8 @@ package body;
 
 import java.util.ArrayList;
 
+import diseases.Disease;
+
 public class Life implements ILife {
 
 	private int thirst;

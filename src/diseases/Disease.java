@@ -1,8 +1,10 @@
-package body;
+package diseases;
 
+import body.Human;
+import body.IDisease;
 import types.DiseaseType;
 
-public final class Disease implements IDisease {
+public class Disease implements IDisease {
 
 	private String name;
 	private DiseaseType type;
