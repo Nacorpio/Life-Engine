@@ -11,6 +11,8 @@ public class Identity {
 	private String lastName;
 	private String secondName;
 
+	private boolean isAlive = false;
+	
 	private Gender gender;
 	private Sexuality sexuality;
 	private Date birthOfDate;
@@ -20,6 +22,7 @@ public class Identity {
 		this.lastName = lastName;
 		this.secondName = secondName;
 		this.gender = gender;
+		this.isAlive = true;
 	}
 	
 	public String getFirstName(){
@@ -49,6 +52,10 @@ public class Identity {
 	@SuppressWarnings("deprecation")
 	public int getAge(){
 		return Calendar.YEAR - birthOfDate.getYear();
+	}
+	
+	public boolean isAlive(){
+		return this.isAlive;
 	}
 	
 }

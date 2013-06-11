@@ -1,7 +1,6 @@
 package human;
 
 import sociality.Family;
-import sociality.FamilyFactory;
 import types.Gender;
 import body.Human;
 

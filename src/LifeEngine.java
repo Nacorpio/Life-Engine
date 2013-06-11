@@ -7,7 +7,7 @@ public final class LifeEngine {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Human h;
+	
 	}
 
 }
