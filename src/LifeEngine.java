@@ -1,5 +1,3 @@
-import body.Human;
-
 
 public final class LifeEngine {
 

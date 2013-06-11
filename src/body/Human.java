@@ -3,7 +3,7 @@ package body;
 import sociality.*;
 import types.Gender;
 
-public class Human implements IHuman {
+public class Human {
 	
 	private DNA dna;
 	private Brain brain;
