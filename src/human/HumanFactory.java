@@ -1,22 +1,23 @@
 package human;
 
 import sociality.Family;
+import sociality.FamilyFactory;
 import types.Gender;
 import body.Human;
 
 public final class HumanFactory {
 
 	/**
-	 * Create a <code>Human</code> with the specified properties.
-	 * @param firstName The first name of the Human.
-	 * @param lastName The last name of the Human.
-	 * @param secondName The second name of the Human.
-	 * @return Returns the created Human.
+	 * Create a human and add it to a family.
+	 * @param family The family to add the human to.
+	 * @param firstName The first name of the human.
+	 * @param lastName The last name of the human.
+	 * @param secondName The second name of the human.
+	 * @param gender The gender of the human. 
+	 * @return Returns the new human.
 	 */
-	public static final Human createHuman(String firstName, String lastName, String secondName, Gender gender){
-		Human result = null;
-		result = new Human(firstName, lastName, secondName, new Family(lastName, null, null, null), gender);
-		return result;
+	public static final Human createHuman(Family family, String firstName, String lastName, String secondName, Gender gender){
+		return new Human(firstName, lastName, secondName, family, gender);
 	}
 	
 }
