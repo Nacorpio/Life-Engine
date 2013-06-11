@@ -1,0 +1,76 @@
+package listeners;
+import body.*;
+
+public class LifeListener {
+
+	private ILifeListener thelistener;
+	
+	private int secondsTicked = 0;
+	private boolean isStarted = false;
+	private Human human = null;
+	
+	public LifeListener(Human h){
+		this.human = h;
+	}
+	
+	/**
+	 * Start the listener.
+	 */
+	public final void start(){
+		if (isStarted == false){
+			isStarted = true;
+			thelistener.onStateChanged(true);
+			tick();
+		}
+	}
+	
+	/**
+	 * Stop the listener.<br>
+	 * The seconds that has passed is reset.
+	 */
+	public final void stop(){
+		if (isStarted == true){
+			isStarted = false;
+			thelistener.onStateChanged(false);
+			secondsTicked = 0;
+		}
+	}
+	
+	private final void tick(){
+		while (isStarted == true){
+			try {
+				mission(this.human);
+				Thread.sleep(1000);
+				this.secondsTicked += 1;
+				thelistener.onTick(this.secondsTicked);
+			} catch (InterruptedException e){e.printStackTrace();}
+		};
+	}
+	
+	/**
+	 * A void containing what is going to happen on each tick.
+	 * @param human The human's life you want to affect.
+	 */
+	public void mission(Human human) {
+		for (Disease d: human.getLife().getDiseases()){
+			d.doEffects(human);
+		}
+	}
+	
+	/**
+	 * Returns the amount of seconds that has been passed.
+	 * @return Returns the amount of seconds that been passed.
+	 */
+	public final int getSecondsTicked(){
+		return this.secondsTicked;
+	}
+	
+	/**
+	 * Returns whether the listener has been started.
+	 * @return Returns whether the listener has been started.
+	 */
+	public final boolean isStarted(){
+		return this.isStarted;
+	}
+
+}

@@ -1,10 +1,15 @@
 package body;
 
+import java.util.Date;
+
+import listeners.ILifeListener;
+import listeners.LifeListener;
+
 import creature.Creature;
 import sociality.*;
 import types.Gender;
 
-public class Human extends Creature {
+public class Human extends Creature implements ILifeListener {
 	
 	private DNA dna;
 	private Brain brain;
@@ -13,9 +18,21 @@ public class Human extends Creature {
 	private SocialLife socialLife;
 	private Family family;
 	
-	public Human(String firstName, String lastName, String secondName, Family family, Gender gender){
+	private LifeListener listener;
+	
+	public Human(Date birthOfDate, String firstName, String lastName, String secondName, Family family, Gender gender){
 		super("Homo sapien", "Animalia", "Hominidae", "Chordata");
-		identity = new Identity(firstName, lastName, secondName, gender);
+		listener = new LifeListener(this);
+		identity = new Identity(birthOfDate, firstName, lastName, secondName, gender);
+		listener.start();
+	}
+	
+	/**
+	 * Returns the listener of the life.
+	 * @return Returns the listener of the life.
+	 */
+	public LifeListener getLifeListener(){
+		return this.listener;
 	}
 	
 	/**
@@ -64,6 +81,16 @@ public class Human extends Creature {
 	 */
 	public Family getHumanFamily(){
 		return this.family;
+	}
+
+	@Override
+	public void onTick(int second) {
+		
+	}
+
+	@Override
+	public void onStateChanged(boolean state) {
+		
 	}
 	
 }

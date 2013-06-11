@@ -1,5 +1,7 @@
 package human;
 
+import java.util.Date;
+
 import sociality.Family;
 import types.Gender;
 import body.Human;
@@ -15,8 +17,8 @@ public final class HumanFactory {
 	 * @param gender The gender of the human. 
 	 * @return Returns the new human.
 	 */
-	public static final Human createHuman(Family family, String firstName, String lastName, String secondName, Gender gender){
-		return new Human(firstName, lastName, secondName, family, gender);
+	public static final Human createHuman(Date dateOfBirth, Family family, String firstName, String lastName, String secondName, Gender gender){
+		return new Human(dateOfBirth, firstName, lastName, secondName, family, gender);
 	}
 	
 }

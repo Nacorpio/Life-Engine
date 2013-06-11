@@ -1,32 +1,51 @@
 package body;
 
+import java.util.ArrayList;
+
 public class Life implements ILife {
 
 	private int thirst;
 	private int hunger;
 	private int health;
 	
+	private Human human;
+	
 	private boolean isAlive;
 	private boolean hasDisease;
 	
-	public int getThirst(){
+	private ArrayList<Disease> diseases = new ArrayList<Disease>();
+	
+	public Life(Human h){
+		this.human = h;
+	}
+	
+	public final int getThirst(){
 		return this.thirst;
 	}
 	
-	public int getHunger(){
+	public final int getHunger(){
 		return this.hunger;
 	}
 	
-	public int getHealth(){
+	public final int getHealth(){
 		return this.health;
 	}
 	
-	public boolean isAlive(){
+	public final boolean isAlive(){
 		return this.isAlive;
 	}
 	
-	public boolean hasDisease(){
+	public final boolean hasDisease(){
 		return this.hasDisease;
+	}
+	
+	public final ArrayList<Disease> getDiseases(){
+		return this.diseases;
+	}
+	
+	public final void addDisease(Disease d){
+		this.diseases.add(d);
+		d.doEffects(human);
 	}
 	
 }
