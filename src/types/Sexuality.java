@@ -1,0 +1,11 @@
+package types;
+
+public enum Sexuality {	
+	HETEROSEXUAL,
+	HOMOSEXUAL,
+	BISEXUAL,
+	ASEXUAL,
+	PANSEXUAL,
+	POLYSEXUAL,
+	INTERSEXUAL;	
+}

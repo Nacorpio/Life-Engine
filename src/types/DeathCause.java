@@ -1,0 +1,14 @@
+package types;
+
+public enum DeathCause {	
+	DISEASE,
+	STRESS,
+	NATURAL,
+	SORROW,
+	HEART_ATTACK,
+	SUICIDE,
+	VIOLENCE,
+	INJURY,
+	MURDERER,
+	UNKNOWN;	
+}
