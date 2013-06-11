@@ -73,7 +73,7 @@ public class Identity {
 	
 	@SuppressWarnings("deprecation")
 	public int getAge(){
-		return Calendar.YEAR - birthOfDate.getYear();
+		return Calendar.getInstance().getTime().getYear() - this.birthOfDate.getYear();
 	}
 	
 	public boolean isAlive(){

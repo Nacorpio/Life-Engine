@@ -12,13 +12,51 @@ public class Life implements ILife {
 	
 	private Human human;
 	
-	private boolean isAlive;
-	private boolean hasDisease;
+	private boolean isDepressed = false;
+	private boolean isDesperate = false;
+	
+	private boolean isHappy = false;
+	private boolean isExcited = false;
+	
+	private boolean isAlive = false;
+	private boolean hasDisease = false;
 	
 	private ArrayList<Disease> diseases = new ArrayList<Disease>();
 	
 	public Life(Human h){
 		this.human = h;
+	}
+	
+	public void setIsExcited(boolean value){
+		this.isExcited = value;
+	}
+	
+	public void setIsHappy(boolean value){
+		this.isHappy = value;
+	}
+	
+	public boolean getIsExcited(){
+		return this.isExcited;
+	}
+	
+	public boolean getIsHappy(){
+		return this.isHappy;
+	}
+	
+	public void setIsDepressed(boolean value){
+		this.isDepressed = value;
+	}
+	
+	public void setIsDesperate(boolean value){
+		this.isDesperate = value;
+	}
+	
+	public boolean getIsDepressed(){
+		return this.isDepressed;
+	}
+	
+	public boolean getIsDesperate(){
+		return this.isDesperate;
 	}
 	
 	public final int getThirst(){

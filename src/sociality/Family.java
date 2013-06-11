@@ -1,12 +1,24 @@
 package sociality;
 
+import human.HumanFactory;
+
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Random;
+import java.util.TimeZone;
 
 import types.Gender;
 
 import body.Human;
 
 public class Family {
+	
+	private IFamilyEvents events;
+	
+	private Human partner = null;
+	private ArrayList<Human> children = new ArrayList<Human>();
+	
+	private Human human = null;
 	
 	private Human father = null;
 	private Human mother = null;
@@ -51,12 +63,36 @@ public class Family {
 			}			
 		}
 	}
+
+	public final void setHuman(Human human){
+		this.human = human;
+	}
+	
+	public final void setPartner(Human partner){
+		this.partner = partner;
+	}
+	
+	public final Human getPartner(){
+		return this.partner;
+	}
+	
+	public final ArrayList<Human> getChildren(){
+		return this.children;
+	}
+	
+	/**
+	 * Returns the events of the family.
+	 * @return Returns the events of the family.
+	 */
+	public final IFamilyEvents getEvents(){
+		return this.events;
+	}
 	
 	/**
 	 * Returns the father of the person.
 	 * @return the father of the person.
 	 */
-	public Human getFather(){
+	public final Human getFather(){
 		return this.father;
 	}
 
@@ -64,15 +100,31 @@ public class Family {
 	 * Returns the mother of the person.
 	 * @return the mother of the person.
 	 */
-	public Human getMother(){
+	public final Human getMother(){
 		return this.mother;
+	}
+	
+	public final void setFather(Human human){
+		this.father = human;
+	}
+	
+	public final void setMother(Human human){
+		this.mother = human;
+	}
+	
+	public final void addBrother(Human brother){
+		brothers.add(brother);
+	}
+	
+	public final void addSister(Human sister){
+		sisters.add(sister);
 	}
 	
 	/**
 	 * Returns the brothers of the person.
 	 * @return the brothers of the person.
 	 */
-	public ArrayList<Human> getBrothers(){
+	public final ArrayList<Human> getBrothers(){
 		return this.brothers;
 	}
 	
@@ -80,7 +132,7 @@ public class Family {
 	 * Returns the sisters of the person.
 	 * @return the sisters of the person.
 	 */
-	public ArrayList<Human> getSisters(){
+	public final ArrayList<Human> getSisters(){
 		return this.sisters;
 	}
 	
@@ -88,7 +140,7 @@ public class Family {
 	 * Returns the name of the family.
 	 * @return the name of the family.
 	 */
-	public String getFamilyName(){
+	public final String getFamilyName(){
 		return this.familyName;
 	}
 	

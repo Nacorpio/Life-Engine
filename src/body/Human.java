@@ -1,6 +1,11 @@
 package body;
 
+import human.HumanFactory;
+import human.IHumanEvents;
+
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 import listeners.ILifeListener;
 import listeners.LifeListener;
@@ -11,6 +16,7 @@ import types.Gender;
 
 public class Human extends Creature implements ILifeListener {
 	
+	private IHumanEvents events;
 	private DNA dna;
 	private Brain brain;
 	private Life life;
@@ -18,13 +24,80 @@ public class Human extends Creature implements ILifeListener {
 	private SocialLife socialLife;
 	private Family family;
 	
+	private boolean isSterile = false;
+	private boolean isVirgin = true;
+	
 	private LifeListener listener;
 	
 	public Human(Date birthOfDate, String firstName, String lastName, String secondName, Family family, Gender gender){
 		super("Homo sapien", "Animalia", "Hominidae", "Chordata");
 		listener = new LifeListener(this);
 		identity = new Identity(birthOfDate, firstName, lastName, secondName, gender);
-		listener.start();
+		life = new Life(this);
+		// listener.start();
+	}
+	
+	public Human bornBaby(Family family, Human target, String firstName, String middleName){
+		Human baby;
+		if (target != null && firstName != null && middleName != null){
+			if (!target.getIsSterile() && !this.getIsSterile()){
+				
+				// The humans to have the baby aren't sterile.
+				Random rand = new Random(System.currentTimeMillis());
+				boolean isMale = rand.nextBoolean();
+				
+				// It's randomly creating a Boolean and if it's True it means it's a male and if it's False it means it's a female.
+				
+				if (isMale){
+					baby = HumanFactory.createHuman(Calendar.getInstance().getTime(), family, firstName, family.getFamilyName(), middleName, Gender.MALE);
+				} else {
+					baby = HumanFactory.createHuman(Calendar.getInstance().getTime(), family, firstName, family.getFamilyName(), middleName, Gender.FEMALE);
+				}
+				
+				baby.setVirginity();
+				baby.setHumanFamily(FamilyFactory.createFamily(family.getFamilyName(), target, this));
+				
+				System.out.println("A baby was born\n" +
+								   "Gender: " + baby.getIdentity().getGender().getName() + "\n" + 
+								   "Age: " + baby.getIdentity().getAge() + "\n" + 
+								   "Full Name: " + baby.getIdentity().getFullName() + "\n" + 
+								   "Full Name (mother): " + baby.getHumanFamily().getMother().getIdentity().getFullName() + "\n" + 
+								   "Full Name (father): " + baby.getHumanFamily().getFather().getIdentity().getFullName() + "\n" +
+								   "Age (mother): " + baby.getHumanFamily().getMother().getIdentity().getAge());
+				return baby;
+				
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+	
+	public void setVirginity(){
+		if (this.isVirgin){
+			this.isVirgin = false;
+		}
+	}
+	
+	public void setSterile(){
+		this.isSterile = true;
+	}
+	
+	/**
+	 * Returns whether the human is a virgin.
+	 * @return Returns whether the human is a virgin.
+	 */
+	public boolean getIsVirgin(){
+		return this.isVirgin;
+	}
+	
+	public boolean getIsSterile(){
+		return this.isSterile;
+	}
+	
+	public IHumanEvents getEvents(){
+		return this.events;
 	}
 	
 	/**
@@ -75,6 +148,10 @@ public class Human extends Creature implements ILifeListener {
 		return this.socialLife;
 	}
 	
+	public void setHumanFamily(Family family){
+		this.family = family;
+	}
+	
 	/**
 	 * Returns the family of the human.
 	 * @return Returns the family of the human.
@@ -82,7 +159,7 @@ public class Human extends Creature implements ILifeListener {
 	public Family getHumanFamily(){
 		return this.family;
 	}
-
+	
 	@Override
 	public void onTick(int second) {
 		

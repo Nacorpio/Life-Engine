@@ -15,10 +15,9 @@ public final class LifeEngine {
 	public static void main(String[] args) throws Exception {
 		Family f = null;
 		f = FamilyFactory.createFamily("Jeppsson", HumanFactory.createHuman(Date.valueOf("1968-03-07"), f, "Tonny", "Jeppsson", "Jšrgen", Gender.MALE), HumanFactory.createHuman(Date.valueOf("1969-08-21"), f, "Bibbi", "Thornberg", "Birgitta", Gender.FEMALE), HumanFactory.createHuman(Date.valueOf("2001-04-12"), f, "Axel", "Jeppsson", "Ludvig", Gender.MALE), HumanFactory.createHuman(Date.valueOf("1997-01-01"), f, "Gustav", "Jeppsson", "Eric", Gender.MALE));
-		for (Human brother: f.getBrothers()){
-			System.out.println(brother.getIdentity().getBirthOfDate().toString() + ": " + brother.getIdentity().getFirstName() + " " + brother.getIdentity().getLastName());
-			System.out.println(brother.getIdentity().isAlive());
-		}
+		System.out.println(f.getMother().getIdentity().getFullName());
+		f.getMother().bornBaby(f, f.getFather(), "Axel", "Jeppsson");
 	}
+	
 
 }

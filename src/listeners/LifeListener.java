@@ -39,7 +39,7 @@ public class LifeListener {
 	public final void start(){
 		if (isStarted == false){
 			isStarted = true;
-			thelistener.onStateChanged(true);
+			// thelistener.onStateChanged(true);
 			tick();
 		}
 	}
@@ -51,7 +51,7 @@ public class LifeListener {
 	public final void stop(){
 		if (isStarted == true){
 			isStarted = false;
-			thelistener.onStateChanged(false);
+			// thelistener.onStateChanged(false);
 			secondsTicked = 0;
 		}
 	}
