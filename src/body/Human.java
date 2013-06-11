@@ -1,9 +1,10 @@
 package body;
 
+import creature.Creature;
 import sociality.*;
 import types.Gender;
 
-public class Human {
+public class Human extends Creature {
 	
 	private DNA dna;
 	private Brain brain;
@@ -13,6 +14,7 @@ public class Human {
 	private Family family;
 	
 	public Human(String firstName, String lastName, String secondName, Family family, Gender gender){
+		super("Homo sapien", "Animalia", "Hominidae", "Chordata");
 		identity = new Identity(firstName, lastName, secondName, gender);
 	}
 	
@@ -60,7 +62,7 @@ public class Human {
 	 * Returns the family of the human.
 	 * @return Returns the family of the human.
 	 */
-	public Family getFamily(){
+	public Family getHumanFamily(){
 		return this.family;
 	}
 	
