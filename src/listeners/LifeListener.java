@@ -57,10 +57,10 @@ public class LifeListener {
 	}
 	
 	private final void tick(){
-		while (isStarted == true){
+		while (isStarted){
 			try {
-				mission(this.human);
 				Thread.sleep(1000);
+				mission(this.human);
 				this.secondsTicked += 1;
 				thelistener.onTick(this.secondsTicked);
 			} catch (InterruptedException e){e.printStackTrace();}

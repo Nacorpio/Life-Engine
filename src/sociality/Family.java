@@ -1,11 +1,6 @@
 package sociality;
 
-import human.HumanFactory;
-
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Random;
-import java.util.TimeZone;
 
 import types.Gender;
 
@@ -17,9 +12,7 @@ public class Family {
 	
 	private Human partner = null;
 	private ArrayList<Human> children = new ArrayList<Human>();
-	
-	private Human human = null;
-	
+
 	private Human father = null;
 	private Human mother = null;
 	
@@ -64,10 +57,6 @@ public class Family {
 		}
 	}
 
-	public final void setHuman(Human human){
-		this.human = human;
-	}
-	
 	public final void setPartner(Human partner){
 		this.partner = partner;
 	}

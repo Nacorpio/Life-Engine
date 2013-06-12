@@ -29,11 +29,13 @@ public class SocialLife {
 			human.getLife().setIsHappy(true);
 			target.getLife().setIsExcited(true);
 			target.getLife().setIsHappy(true);
+			System.out.println(this.getHuman().getIdentity().getFirstName() + " marries " + target.getIdentity().getFirstName());
 			return rand.nextBoolean();
 		} else {
 			// The target declines the request of marriage.
 			human.getLife().setIsDepressed(true);
 			target.getLife().setIsHappy(true);
+			System.out.println(target.getIdentity().getFirstName() + " declined the marriage");
 			return rand.nextBoolean();
 		}
 	}
@@ -46,18 +48,27 @@ public class SocialLife {
 			if (protection){
 				if (!human.getIsSterile() || !target.getIsSterile()){
 					// Means that they will have a baby.
+					Human woman = null;
+					Human man = null;
 					Human baby = target.bornBaby(this.family, target, "Axel", "Jeppsson");
 					if (target.getIdentity().getGender() == Gender.FEMALE){
+						man = this.getHuman();
+						woman = target;
 						target.getEvents().onBorn(target);
 						baby.getHumanFamily().setMother(target);
 						baby.getHumanFamily().setFather(this.human);
 					} else if (target.getIdentity().getGender() == Gender.MALE){
+						woman = this.getHuman();
+						man = target;
 						this.human.getEvents().onBorn(this.human);
 						baby.getHumanFamily().setMother(this.human);
 						baby.getHumanFamily().setFather(target);
 					}
+					System.out.println(this.getHuman().getIdentity().getFirstName() + " performed intercourse to " + target.getIdentity().getFirstName() + "\n" + 
+									   man.getIdentity().getFirstName() + " now made " + woman.getIdentity().getFirstName() + " pregnant.");
 					target.getLife().setIsExcited(true);
 					human.getLife().setIsExcited(true);
+					woman.bornBaby(this.getFamily(), man, "The first name", "The last name");
 				} else {
 					// Means one of them are sterile so that they can't have a child.
 					target.getLife().setIsDesperate(true);
@@ -71,6 +82,10 @@ public class SocialLife {
 		}
 	}
 
+	public Human getHuman(){
+		return this.human;
+	}
+	
 	public Family getFamily(){
 		return this.family;
 	}

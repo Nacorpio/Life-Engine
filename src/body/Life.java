@@ -14,6 +14,7 @@ public class Life implements ILife {
 	
 	private boolean isDepressed = false;
 	private boolean isDesperate = false;
+	private boolean isCrying = false;
 	
 	private boolean isHappy = false;
 	private boolean isExcited = false;
@@ -35,12 +36,20 @@ public class Life implements ILife {
 		this.isHappy = value;
 	}
 	
+	public void setIsCrying(boolean value){
+		this.isCrying = value;
+	}
+	
 	public boolean getIsExcited(){
 		return this.isExcited;
 	}
 	
 	public boolean getIsHappy(){
 		return this.isHappy;
+	}
+	
+	public boolean getIsCrying(){
+		return this.isCrying;
 	}
 	
 	public void setIsDepressed(boolean value){

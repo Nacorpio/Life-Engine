@@ -21,4 +21,9 @@ public final class HumanFactory {
 		return new Human(dateOfBirth, firstName, lastName, secondName, family, gender);
 	}
 	
+	/**
+	 * Returns a human with a random identity.
+	 * @return Returns a human with a random identity.
+	 */
+	
 }

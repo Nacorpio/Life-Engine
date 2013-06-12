@@ -31,41 +31,52 @@ public class Human extends Creature implements ILifeListener {
 	
 	public Human(Date birthOfDate, String firstName, String lastName, String secondName, Family family, Gender gender){
 		super("Homo sapien", "Animalia", "Hominidae", "Chordata");
-		listener = new LifeListener(this);
-		identity = new Identity(birthOfDate, firstName, lastName, secondName, gender);
+		this.family = family;
+		identity = new Identity(this, birthOfDate, firstName, lastName, secondName, gender);
+		socialLife = new SocialLife(this);
 		life = new Life(this);
+		brain = new Brain(this);
+		dna = new DNA(this);
+		listener = new LifeListener(this);
 		// listener.start();
 	}
 	
 	public Human bornBaby(Family family, Human target, String firstName, String middleName){
 		Human baby;
-		if (target != null && firstName != null && middleName != null){
-			if (!target.getIsSterile() && !this.getIsSterile()){
-				
-				// The humans to have the baby aren't sterile.
-				Random rand = new Random(System.currentTimeMillis());
-				boolean isMale = rand.nextBoolean();
-				
-				// It's randomly creating a Boolean and if it's True it means it's a male and if it's False it means it's a female.
-				
-				if (isMale){
-					baby = HumanFactory.createHuman(Calendar.getInstance().getTime(), family, firstName, family.getFamilyName(), middleName, Gender.MALE);
+		if (this.getIdentity().getGender() == Gender.FEMALE){
+			if (target != null && firstName != null && middleName != null){
+				if (!target.getIsSterile() && !this.getIsSterile()){
+					
+					// The humans to have the baby aren't sterile.
+					Random rand = new Random(System.currentTimeMillis());
+					boolean isMale = rand.nextBoolean();
+					
+					// It's randomly creating a Boolean and if it's True it means it's a male and if it's False it means it's a female.
+					
+					if (isMale){
+						baby = HumanFactory.createHuman(Calendar.getInstance().getTime(), family, firstName, family.getFamilyName(), middleName, Gender.MALE);
+					} else {
+						baby = HumanFactory.createHuman(Calendar.getInstance().getTime(), family, firstName, family.getFamilyName(), middleName, Gender.FEMALE);
+					}
+					
+					baby.setVirginity();
+					baby.setHumanFamily(FamilyFactory.createFamily(family.getFamilyName(), target, this));
+					baby.getHumanFamily().getEvents().onFamilyMemberBorn(baby, this);
+					this.getEvents().onGiveBirth(baby);
+					baby.getEvents().onBorn(this);
+					
+					System.out.println("A baby was born\n" +
+									   "Gender: " + baby.getIdentity().getGender().getName() + "\n" + 
+									   "Age: " + baby.getIdentity().getAge() + "\n" + 
+									   "Full Name: " + baby.getIdentity().getFullName() + "\n" + 
+									   "Full Name (mother): " + baby.getHumanFamily().getMother().getIdentity().getFullName() + "\n" + 
+									   "Full Name (father): " + baby.getHumanFamily().getFather().getIdentity().getFullName() + "\n" +
+									   "Age (mother): " + baby.getHumanFamily().getMother().getIdentity().getAge());
+					return baby;
+					
 				} else {
-					baby = HumanFactory.createHuman(Calendar.getInstance().getTime(), family, firstName, family.getFamilyName(), middleName, Gender.FEMALE);
+					return null;
 				}
-				
-				baby.setVirginity();
-				baby.setHumanFamily(FamilyFactory.createFamily(family.getFamilyName(), target, this));
-				
-				System.out.println("A baby was born\n" +
-								   "Gender: " + baby.getIdentity().getGender().getName() + "\n" + 
-								   "Age: " + baby.getIdentity().getAge() + "\n" + 
-								   "Full Name: " + baby.getIdentity().getFullName() + "\n" + 
-								   "Full Name (mother): " + baby.getHumanFamily().getMother().getIdentity().getFullName() + "\n" + 
-								   "Full Name (father): " + baby.getHumanFamily().getFather().getIdentity().getFullName() + "\n" +
-								   "Age (mother): " + baby.getHumanFamily().getMother().getIdentity().getAge());
-				return baby;
-				
 			} else {
 				return null;
 			}

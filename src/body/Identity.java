@@ -12,19 +12,25 @@ public class Identity {
 	private String secondName;
 
 	private boolean isAlive = false;
-	
+
+	private Human human;
 	private Gender gender;
 	private Sexuality sexuality;
 	private Date birthOfDate;
 	
-	public Identity(Date birthOfDate, String firstName, String lastName, String secondName, Gender gender){
+	public Identity(Human human, Date birthOfDate, String firstName, String lastName, String secondName, Gender gender){
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.secondName = secondName;
 		this.gender = gender;
 		this.isAlive = true;
 		this.birthOfDate = birthOfDate;
+		this.human = human;
 		this.sexuality = Sexuality.HETEROSEXUAL;
+	}
+	
+	public Human getHuman(){
+		return this.human;
 	}
 	
 	public String getFullName(){
@@ -45,10 +51,12 @@ public class Identity {
 	
 	public void setFirstName(String name){
 		this.firstName = name;
+		this.human.getEvents().onFirstNameChanged(name);
 	}
 	
 	public void setLastName(String name){
 		this.lastName = name;
+		this.human.getEvents().onLastNameChanged(name);
 	}
 	
 	public void setSecondName(String name){
