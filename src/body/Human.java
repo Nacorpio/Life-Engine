@@ -92,7 +92,9 @@ public class Human extends Creature implements ILifeListener {
 	}
 	
 	public void setSterile(){
-		this.isSterile = true;
+		if (!this.isSterile){
+			this.isSterile = true;
+		}
 	}
 	
 	/**
@@ -103,10 +105,18 @@ public class Human extends Creature implements ILifeListener {
 		return this.isVirgin;
 	}
 	
+	/**
+	 * Returns whether the human is sterile. 
+	 * @return Returns whether the human is sterile.
+	 */
 	public boolean getIsSterile(){
 		return this.isSterile;
 	}
 	
+	/**
+	 * Returns the events of the human.
+	 * @return Returns the events of the human.
+	 */
 	public IHumanEvents getEvents(){
 		return this.events;
 	}

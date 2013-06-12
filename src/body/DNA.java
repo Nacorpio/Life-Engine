@@ -9,13 +9,17 @@ public class DNA implements IDNA {
 	}
 	
 	/**
-	 * Returns the human.
-	 * @return Returns the human.
+	 * Returns the human that has the DNA.
+	 * @return Returns the human has the DNA.
 	 */
 	public Human getHuman(){
 		return this.human;
 	}
 	
+	/**
+	 * Set the human of this DNA.
+	 * @param human The human to set.
+	 */
 	public void setHuman(Human human){
 		this.human = human;
 	}

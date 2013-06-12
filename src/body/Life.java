@@ -40,14 +40,26 @@ public class Life implements ILife {
 		this.isCrying = value;
 	}
 	
+	/**
+	 * Returns whether the human is excited.
+	 * @return Returns whether the human is excited.
+	 */
 	public boolean getIsExcited(){
 		return this.isExcited;
 	}
 	
+	/**
+	 * Returns whether the human is happy.
+	 * @return Returns whether the human is happy.
+	 */
 	public boolean getIsHappy(){
 		return this.isHappy;
 	}
 	
+	/**
+	 * Returns whether the human is crying.
+	 * @return Returns whether the human is crying.
+	 */
 	public boolean getIsCrying(){
 		return this.isCrying;
 	}
@@ -60,10 +72,18 @@ public class Life implements ILife {
 		this.isDesperate = value;
 	}
 	
+	/**
+	 * Returns whether the human is depressed.
+	 * @return Returns whether the human is depressed.
+	 */
 	public boolean getIsDepressed(){
 		return this.isDepressed;
 	}
 	
+	/**
+	 * Returns whether the human is desperate.
+	 * @return Returns whether the human is desperate.
+	 */
 	public boolean getIsDesperate(){
 		return this.isDesperate;
 	}
