@@ -30,7 +30,9 @@ public class Human extends Creature implements ILifeListener {
 	private LifeListener listener;
 	
 	public Human(Date birthOfDate, String firstName, String lastName, String secondName, Family family, Gender gender){
+		
 		super("Homo sapien", "Animalia", "Hominidae", "Chordata");
+		
 		this.family = family;
 		identity = new Identity(this, birthOfDate, firstName, lastName, secondName, gender);
 		socialLife = new SocialLife(this);
@@ -38,7 +40,7 @@ public class Human extends Creature implements ILifeListener {
 		brain = new Brain(this);
 		dna = new DNA(this);
 		listener = new LifeListener(this);
-		// listener.start();
+		
 	}
 	
 	public Human bornBaby(Family family, Human target, String firstName, String middleName){

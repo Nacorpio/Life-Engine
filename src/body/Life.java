@@ -20,12 +20,12 @@ public class Life implements ILife {
 	private boolean isExcited = false;
 	
 	private boolean isAlive = false;
-	private boolean hasDisease = false;
 	
 	private ArrayList<Disease> diseases = new ArrayList<Disease>();
 	
 	public Life(Human h){
 		this.human = h;
+		this.isAlive = true;
 	}
 	
 	public void setIsExcited(boolean value){
@@ -88,26 +88,50 @@ public class Life implements ILife {
 		return this.isDesperate;
 	}
 	
+	/**
+	 * Returns the thirst of the life (human).
+	 * @return Returns the thirst of the list (human).
+	 */
 	public final int getThirst(){
 		return this.thirst;
 	}
 	
+	/**
+	 * Returns the hunger of the life (human).
+	 * @return Returns the hunger of the life (human).
+	 */
 	public final int getHunger(){
 		return this.hunger;
 	}
 	
+	/**
+	 * Returns the health of the life (human).
+	 * @return Returns the health of the life (human).
+	 */
 	public final int getHealth(){
 		return this.health;
 	}
 	
+	/**
+	 * Returns whether the human is alive.
+	 * @return Returns whether the human is alive.
+	 */
 	public final boolean isAlive(){
 		return this.isAlive;
 	}
 	
+	/**
+	 * Returns whether the person has at least one disease.
+	 * @return Returns whether the person has at least one disease.
+	 */
 	public final boolean hasDisease(){
-		return this.hasDisease;
+		return this.diseases.size() >= 1 ? true : false;
 	}
 	
+	/**
+	 * Returns the diseases of the life of the person.
+	 * @return Returns the diseases of the life of the person.
+	 */
 	public final ArrayList<Disease> getDiseases(){
 		return this.diseases;
 	}
